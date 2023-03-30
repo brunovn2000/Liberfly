@@ -16,6 +16,23 @@ class ProblemaController extends Controller
 
     }
 
+
+        /** @OA\Get(
+        * path="/api/v1/problema",
+        * summary="retornar problema",
+        * description="retornar problema ",
+        * operationId="listproblem",
+        * tags={"ProblemaAereo"},
+        * security={ {"bearer": {} }},
+        * @OA\Response(
+        *    response=200,
+        *    description="Success",
+        *    @OA\JsonContent(
+        *       @OA\Property(property="data", type="object", example="problema")
+        *        )
+        *     ),
+        * )
+        */
     public function listarTodos(){
 
         try {
@@ -39,6 +56,23 @@ class ProblemaController extends Controller
 
     }
 
+
+        /** @OA\Get(
+        * path="/api/v1/problema/{id}",
+        * summary="retornar unico problema",
+        * description="retornar unico problema com informações de sewu usuario",
+        * operationId="listproblemUnique",
+        * tags={"ProblemaAereo"},
+        * security={ {"bearer": {} }},
+        * @OA\Response(
+        *    response=200,
+        *    description="Success",
+        *    @OA\JsonContent(
+        *       @OA\Property(property="data", type="object", example="problema")
+        *        )
+        *     ),
+        * )
+        */
     public function listar($id){
 
 

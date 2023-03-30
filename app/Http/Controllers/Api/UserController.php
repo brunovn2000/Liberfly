@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
     //
     public function __construct(User $user)
     {
@@ -17,6 +18,42 @@ class UserController extends Controller
 
     }
 
+
+
+
+    /**
+     * @OA\Post(
+     * path="/api/v1/user",
+     * summary="criar usuario",
+     * description="criação de usuarios",
+     * operationId="criar",
+     * tags={"User"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Credenciais do usuario",
+     *    @OA\JsonContent(
+     *       required={"name","email","password"},
+     *       @OA\Property(property="name", type="string", format="name", example="bruno"),
+     *       @OA\Property(property="email", type="string", format="email", example="bruno@gmail.com"),
+     *       @OA\Property(property="password", type="string", format="password", example="123456"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *    response=422,
+     *    description="Wrong credentials response",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="msg", type="string", example="erro ao criar usuario")
+     *        )
+     *     ),
+    * @OA\Response(
+     *    response=200,
+     *    description="Wrong credentials response",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="msg", type="string", example=" msg:  usuario criado com sucesso")
+     *        )
+     *     )
+     * )
+     */
     public function criar(Request $request)
     {
 
@@ -50,6 +87,23 @@ class UserController extends Controller
     }
 
 
+    /** @OA\Get(
+        * path="/api/v1/user",
+        * summary="retornar todos os usuarios",
+        * description="retornar todos os usuarios",
+        * operationId="listUsers",
+        * tags={"User"},
+        * security={ {"bearer": {} }},
+        * @OA\Response(
+        *    response=200,
+        *    description="Success",
+        *    @OA\JsonContent(
+        *       @OA\Property(property="data", type="object", example="user")
+        *        )
+        *     ),
+        * )
+        */
+       
 
     public function listarTodos()
     {
@@ -74,6 +128,23 @@ class UserController extends Controller
 
     }
 
+
+        /** @OA\Get(
+        * path="/api/v1/user/{id}",
+        * summary="retornar usuario",
+        * description="retornar usuarios com seus problemas aereos",
+        * operationId="listUsersUnique",
+        * tags={"User"},
+        * security={ {"bearer": {} }},
+        * @OA\Response(
+        *    response=200,
+        *    description="Success",
+        *    @OA\JsonContent(
+        *       @OA\Property(property="data", type="object", example="user")
+        *        )
+        *     ),
+        * )
+        */
     public function listar($id)
     {
         Validator::make(['id'=> $id], [
@@ -105,6 +176,22 @@ class UserController extends Controller
     }
 
 
+        /** @OA\Delete(
+        * path="/api/v1/user/{id}",
+        * summary="deletar usuario",
+        * description="deletar usuarios",
+        * operationId="deleteUsers",
+        * tags={"User"},
+        * security={ {"bearer": {} }},
+        * @OA\Response(
+        *    response=200,
+        *    description="Success",
+        *    @OA\JsonContent(
+        *       @OA\Property(property="data", type="object", example="user")
+        *        )
+        *     ),
+        * )
+        */
     public function deletar( $id)
     {
 
